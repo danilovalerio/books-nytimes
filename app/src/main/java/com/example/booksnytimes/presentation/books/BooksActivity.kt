@@ -2,6 +2,7 @@ package com.example.booksnytimes.presentation.books
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksnytimes.R
@@ -23,6 +24,9 @@ class BooksActivity : AppCompatActivity() {
             setHasFixedSize(true) //para melhor performance
             adapter = BooksAdapter(getBooks())
         }
+
+        //instanciando a view model na activity
+        val viewModel: BooksViewModel = ViewModelProviders.of(BooksViewModel::class.java)
 
     }
 

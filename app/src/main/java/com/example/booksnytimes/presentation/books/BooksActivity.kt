@@ -29,13 +29,4 @@ class BooksActivity : AppCompatActivity() {
         val viewModel: BooksViewModel = ViewModelProviders.of(BooksViewModel::class.java)
 
     }
-
-    fun getBooks() : List<Book> {
-        return listOf<Book>(
-            Book("Titulo 1", "Autor 1"),
-            Book("Titulo 3", "Autor 3"),
-            Book("Titulo 2", "Autor 2"),
-            Book("Titulo 4", "Autor 4")
-        )
-    }
 }

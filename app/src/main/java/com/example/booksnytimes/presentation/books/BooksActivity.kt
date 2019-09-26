@@ -2,6 +2,7 @@ package com.example.booksnytimes.presentation.books
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,15 +19,26 @@ class BooksActivity : AppCompatActivity() {
         toolbarMain.title = getString(R.string.books_title)
         setActionBar(toolbarMain)
 
-        //com o with acessamos o RecyclerView e vemos seu conteúdo
-        with(recyclerBooks){
-            layoutManager = LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
-            setHasFixedSize(true) //para melhor performance
-            adapter = BooksAdapter(getBooks())
-        }
-
         //instanciando a view model na activity
-        val viewModel: BooksViewModel = ViewModelProviders.of(BooksViewModel::class.java)
+        val viewModel: BooksViewModel = ViewModelProviders.of(this).get(BooksViewModel::class.java)
+
+        //escutando o booksLiveData para qualquer alteração realizada
+        viewModel.booksLiveData.observe(this, Observer {
+            //com o let entramos no it(lista de livros) caso ele não seja nulo e nomeia o it como books
+            it?.let { books ->
+                //com o with acessamos o RecyclerView e vemos seu conteúdo
+                with(recyclerBooks){
+                    layoutManager = LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
+                    setHasFixedSize(true) //para melhor performance
+                    adapter = BooksAdapter(books)
+                }
+            }
+        })
+
+        //que está no ViewModel
+        viewModel.getBooks()
+
+
 
     }
 }

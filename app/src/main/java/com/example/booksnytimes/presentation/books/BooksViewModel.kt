@@ -1,6 +1,5 @@
 package com.example.booksnytimes.presentation.books
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.booksnytimes.data.model.Book

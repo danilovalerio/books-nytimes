@@ -1,4 +1,4 @@
-package com.example.booksnytimes.books
+package com.example.booksnytimes.presentation.books
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +11,7 @@ class BooksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
-        toolbarMain.title = "Livros"
+        toolbarMain.title = getString(R.string.books_title)
         setActionBar(toolbarMain)
 
     }

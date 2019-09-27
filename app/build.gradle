@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+//para adicionar codegen
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -45,7 +47,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 
-
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.8.0")
 
     //Teste
     testImplementation 'junit:junit:4.12'

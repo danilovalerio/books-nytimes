@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.booksnytimes.R
 import com.example.booksnytimes.data.model.Book
+import com.example.booksnytimes.presentation.details.BookDetailsActivity
 import kotlinx.android.synthetic.main.activity_books.*
 
 class BooksActivity : AppCompatActivity() {
@@ -30,7 +31,12 @@ class BooksActivity : AppCompatActivity() {
                 with(recyclerBooks){
                     layoutManager = LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true) //para melhor performance
-                    adapter = BooksAdapter(books)
+                    adapter = BooksAdapter(books){book ->
+                        val intent = BookDetailsActivity.getStartIntent(this@BooksActivity,book.title,book.description)
+                        this@BooksActivity.startActivity(intent)
+
+
+                    }
                 }
             }
         })
